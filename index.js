@@ -40,7 +40,7 @@ if (process.env.S3_ENABLE) {
 }
 
 var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://messApp34:messapp34_db@ds157078.mlab.com:57078/heroku_xpbjglzf',
+  databaseURI: databaseUri || 'mongodb://heroku_xpbjglzf:kj7dvdbt4prj06dpqmvvi5h1a1@ds157078.mlab.com:57078/heroku_xpbjglzf',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'LHkNxyEd8sT=QmUtNxyEdsBJaUv',
   masterKey: process.env.MASTER_KEY || 'kBxQmIsA43P9Oo73Sa1$n9', //Add your master key here. Keep it secret!
