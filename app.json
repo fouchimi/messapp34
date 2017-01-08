@@ -7,7 +7,7 @@
   "env": {
     "PARSE_MOUNT": {
       "description": "Configure Parse API route.",
-      "value": "/parse"
+      "value": "/parse/"
     },
     "APP_ID": {
       "description": "A unique identifier for your app.",
