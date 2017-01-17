@@ -21,6 +21,7 @@ Parse.Cloud.define('chatChannelTest', function(request, response) {
      console.log("#### PUSH OK");
   }, error: function(error) {
      console.log("#### PUSH ERROR" + error.message);
+  console.log("sender "+ request.params.sender + " " + "receiver " + request.params.receiver + " " + " text "+ request.params.text);
   }, useMasterKey: true});
 
   response.success('success');
