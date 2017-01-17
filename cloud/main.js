@@ -1,21 +1,16 @@
 
 // Android push test
-Parse.Cloud.define('chatChannel', function(request, response) {
+Parse.Cloud.define('chatChannelTest', function(request, response) {
 
-  // request has 2 parameters: params passed by the client and the authorized user
-  var params = request.params;
-  var user = request.user;
-  
-  var sender = params.sender;
-  var receiver = params.receiver;
-  var message = params.text;
-
-  var payload = {"sender" : sender, "receiver" : receiver, "message" : message};
+  console.log("sender "+ request.params.sender + " " + "receiver " + request.params.receiver + " " + " text "+ request.params.text); 
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
 
+  var payload = {"sender" : request.params.sender, 
+                 "receiver": request.params.receiver,
+                 "text": request.params.text};
 
   // Note that useMasterKey is necessary for Push notifications to succeed.
 
@@ -30,4 +25,5 @@ Parse.Cloud.define('chatChannel', function(request, response) {
 
   response.success('success');
 });
+
 
