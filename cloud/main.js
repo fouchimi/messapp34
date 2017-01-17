@@ -2,12 +2,11 @@
 // Android push test
 Parse.Cloud.define('chatChannel', function(request, response) {
 
-  console.log("sender "+ request.params.sender + " " + "receiver " + request.params.receiver + " " + " text "+ request.params.text); 
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
-  pushQuery.equalTo("receiver", request.params.receiver);
+  pushQuery.equalTo("user_id", request.params.receiver);
 
   var payload = {"sender" : request.params.sender, 
                  "receiver": request.params.receiver,
