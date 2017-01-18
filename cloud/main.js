@@ -1,32 +1,29 @@
 
 // Android push test
-Parse.Cloud.define('chatChannel', function(request, response) {
+Parse.Cloud.define("sendEntry", function(request, response) {
+        var name = request.params.senderName;
+        var msg = request.params.message;
 
-
-  // use to custom tweak whatever payload you wish to send
-  var pushQuery = new Parse.Query(Parse.Installation);
-  pushQuery.equalTo("deviceType", "android");
-  pushQuery.equalTo("user_id", request.params.receiver);
-
-  var payload = {"sender" : request.params.sender, 
-                 "receiver": request.params.receiver,
-                 "text": request.params.text};
-
-  // Note that useMasterKey is necessary for Push notifications to succeed.
-
-  Parse.Push.send({
-      data: payload,
-      where: pushQuery
-    }, {
-      useMasterKey: true
-    })
-    .then(function() {
-      response.success("Push Sent!");
-    }, function(error) {
-      response.error("Error while trying to send push " + error.message);
-    });
-
-  response.success('success');
+        Parse.Push.send({
+                channels: [ request.params.channelId ],
+                data: {
+                        title: name,
+                        message: msg,
+                        action: "com.parse.push.intent.RECEIVE",
+                        senderId: request.params.senderId,
+                        receiverId: request.params.receiverId
+                }
+        }, {
+                success: function() {
+                        // Push was successful
+                        response.success("sendAnnouncement sent");
+                },
+                error: function(error) {
+                        // Handle error
+                        response.error("error with sendAnnouncement: " + error);
+                },
+                useMasterKey: true
+        });
 });
 
 
