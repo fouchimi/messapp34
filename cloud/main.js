@@ -1,5 +1,3 @@
-
-// Android push test
 Parse.Cloud.define('chatChannel', function(request, response) {
   var sender = request.params.title;
   var receipientId = request.params.alert;
