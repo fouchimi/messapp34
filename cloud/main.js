@@ -8,7 +8,7 @@ Parse.Cloud.define('Chats', function(request, response) {
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
-  //pushQuery.equalTo("user", receipientId);
+  pushQuery.equalTo("user", receipientId);
 
   var payload = {"title" : sender, 
                  "alert": message };
