@@ -1,6 +1,6 @@
 
 // Android push test
-Parse.Cloud.define('Chats', function(request, response) {
+Parse.Cloud.define('chatChannel', function(request, response) {
   var sender = request.params.title;
   var receipientId = request.params.alert;
   var message = request.params.text;
