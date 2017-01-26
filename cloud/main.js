@@ -1,14 +1,14 @@
 
 // Android push test
 Parse.Cloud.define('Chats', function(request, response) {
-  var sender = request.params.title;
-  var receiver = request.params.receiver;
-  var message = request.params.alert;
+  var sender = request.params.sender;
+  var receipientId = request.params.receiver;
+  var message = request.params.message;
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
-  //pushQuery.equalTo("user", receiver);
+  pushQuery.equalTo("user", receipientId);
 
   var payload = {"title" : sender, 
                  "alert": message };
