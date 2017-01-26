@@ -1,6 +1,6 @@
 
 // Android push test
-Parse.Cloud.define('chat', function(request, response) {
+Parse.Cloud.define('sendPushToUser', function(request, response) {
   var sender = request.params.sender;
   var receiver = request.params.receiver;
   var message = request.params.message;
