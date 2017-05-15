@@ -1,15 +1,19 @@
-Parse.Cloud.define('chatChannel', function(request, response) {
+Parse.Cloud.define('pushChannel', function(request, response) {
   var sender = request.params.title;
-  var receipientId = request.params.recipientId;
+  var recipients = request.params.recipients;
   var message = request.params.alert;
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
-  pushQuery.equalTo("user", receipientId);
 
-  var payload = {"title" : sender, 
-                 "alert": message };
+  var recipientsArray[] = recipients.split(",");  
+
+  for(var i=0; i < recipientsArray.length; i++){
+     pushQuery.equalTo("user", recipientsArray[i]);
+  }
+
+  var payload = {"title" : sender, "alert": message };
 
   // Note that useMasterKey is necessary for Push notifications to succeed.
 
